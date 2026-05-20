@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '3.0.1'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Selenide
+    testImplementation 'com.codeborne:selenide:7.3.2'
+
+    // Allure Selenide (для скриншотов)
+    testImplementation 'io.qameta.allure:allure-selenide:2.25.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+allure {
+    version = '2.25.0'
+    autoconfigure = true
+    aspectjweaver = true
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
